@@ -212,7 +212,7 @@ async function cargarPartidos() {
       ligas[liga].partidos.push(partido);
     });
 
-    Object.values(ligas).forEach(liga => {
+    ligasOrdenadas.forEach(liga => {
       const bloque = document.createElement("div");
       bloque.className = "league";
 

@@ -8,9 +8,10 @@ export default async function handler(req, res) {
       });
     }
 
+    const fecha = req.query.date || new Date().toISOString().split("T")[0];
+
     const response = await fetch(
-      "https://v3.football.api-sports.io/fixtures?date=" +
-      new Date().toISOString().split("T")[0],
+      "https://v3.football.api-sports.io/fixtures?date=" + fecha,
       {
         headers: {
           "x-apisports-key": apiKey

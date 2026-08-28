@@ -249,7 +249,9 @@ let fechaSeleccionada = new Date().toISOString().split("T")[0];
     }
 
     const partidos = datos.response || [];
-const partidosFiltrados = partidos.filter(partido => {
+console.log("PARTIDOS RECIBIDOS:", partidos.length);
+console.log("DATOS API:", datos);
+    const partidosFiltrados = partidos.filter(partido => {
   if (partido.league.name === "Premier League") {
     return partido.league.country === "England";
   }

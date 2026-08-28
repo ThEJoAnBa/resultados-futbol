@@ -236,9 +236,21 @@ let fechaSeleccionada = new Date().toISOString().split("T")[0];
 
   cargarPartidos();
 }
- function abrirCompeticion(idLiga) {
-  console.log("Competición seleccionada:", idLiga);
-} 
+async function abrirCompeticion(idLiga) {
+  try {
+    const respuesta = await fetch(`/api/league?league=${idLiga}`);
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(datos.error || "Error al cargar la competición");
+    }
+
+    console.log("Clasificación:", datos);
+
+  } catch (error) {
+    console.error(error);
+  }
+}
   async function cargarPartidos() {
   const contenedor = document.querySelector(".container");
 

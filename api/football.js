@@ -1,27 +1,23 @@
 export default async function handler(req, res) {
   try {
-    const apiKey = process.env.API_FOOTBALL_KEY;
+    const apiKey = process.env.FOOTBALLDATA_API_KEY;
 
     if (!apiKey) {
       return res.status(500).json({
-        error: "Falta configurar API_FOOTBALL_KEY"
+        error: "Falta configurar FOOTBALLDATA_API_KEY en Vercel."
       });
     }
 
-    const hoy = new Date();
+    const { date } = req.query;
 
-const fechaLocal =
-  hoy.getFullYear() + "-" +
-  String(hoy.getMonth() + 1).padStart(2, "0") + "-" +
-  String(hoy.getDate()).padStart(2, "0");
-
-const fecha = req.query.date || fechaLocal;
+    const fecha = date || new Date().toISOString().split("T")[0];
 
     const response = await fetch(
-      "https://v3.football.api-sports.io/fixtures?date=" + fecha,
+      `https://api.football-data.io/v1/matches?date=${fecha}`,
       {
         headers: {
-          "x-apisports-key": apiKey
+          "Authorization": `Bearer ${apiKey}`,
+          "Content-Type": "application/json"
         }
       }
     );
@@ -35,6 +31,8 @@ const fecha = req.query.date || fechaLocal;
     return res.status(200).json(data);
 
   } catch (error) {
+    console.error(error);
+
     return res.status(500).json({
       error: error.message
     });

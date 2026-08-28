@@ -321,8 +321,23 @@ const ligasOrdenadas = Object.values(ligas).sort((a, b) => {
           textoEstado = "EN DIRECTO";
         }
 
-        const golesLocal = partido.goals.home ?? "-";
-        const golesVisitante = partido.goals.away ?? "-";
+       const estado = partido.fixture.status.short;
+
+let marcador;
+
+if (estado === "NS") {
+  const fechaPartido = new Date(partido.fixture.date);
+
+  marcador = fechaPartido.toLocaleTimeString("es-ES", {
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+} else {
+  const golesLocal = partido.goals.home ?? 0;
+  const golesVisitante = partido.goals.away ?? 0;
+
+  marcador = `${marcador}`;
+}
 
         const partidoHTML = document.createElement("div");
         partidoHTML.className = "match";

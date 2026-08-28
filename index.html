@@ -164,6 +164,109 @@
   <footer>
     BATIISTV · Resultados de fútbol
   </footer>
+<script>
+async function cargarPartidos() {
+  const contenedor = document.querySelector(".container");
 
+  try {
+    const respuesta = await fetch("/api/football");
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+      throw new Error(datos.error || "Error al cargar los partidos");
+    }
+
+    const partidos = datos.response || [];
+
+    // Eliminamos los ejemplos
+    document.querySelectorAll(".league").forEach(el => el.remove());
+    document.querySelector(".empty")?.remove();
+
+    if (partidos.length === 0) {
+      contenedor.insertAdjacentHTML(
+        "beforeend",
+        '<div class="empty">No hay partidos programados para hoy.</div>'
+      );
+      return;
+    }
+
+    const ligas = {};
+
+    partidos.forEach(partido => {
+      const liga = partido.league.name;
+
+      if (!ligas[liga]) {
+        ligas[liga] = {
+          nombre: liga,
+          partidos: []
+        };
+      }
+
+      ligas[liga].partidos.push(partido);
+    });
+
+    Object.values(ligas).forEach(liga => {
+      const bloque = document.createElement("div");
+      bloque.className = "league";
+
+      bloque.innerHTML = `
+        <div class="league-title">
+          ${liga.nombre}
+        </div>
+      `;
+
+      liga.partidos.forEach(partido => {
+        const estado = partido.fixture.status.short;
+
+        let textoEstado = "Próximo";
+
+        if (estado === "FT") {
+          textoEstado = "Finalizado";
+        } else if (["1H", "2H", "ET", "P"].includes(estado)) {
+          textoEstado = "EN DIRECTO";
+        }
+
+        const golesLocal = partido.goals.home ?? "-";
+        const golesVisitante = partido.goals.away ?? "-";
+
+        const partidoHTML = document.createElement("div");
+        partidoHTML.className = "match";
+
+        partidoHTML.innerHTML = `
+          <div class="team home">
+            ${partido.teams.home.name}
+          </div>
+
+          <div class="score">
+            ${golesLocal} - ${golesVisitante}
+            <span class="status">${textoEstado}</span>
+          </div>
+
+          <div class="team away">
+            ${partido.teams.away.name}
+          </div>
+        `;
+
+        bloque.appendChild(partidoHTML);
+      });
+
+      contenedor.appendChild(bloque);
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    document.querySelectorAll(".league").forEach(el => el.remove());
+    document.querySelector(".empty")?.remove();
+
+    contenedor.insertAdjacentHTML(
+      "beforeend",
+      `<div class="empty">No se pudieron cargar los resultados.</div>`
+    );
+  }
+}
+
+cargarPartidos();
+</script>
 </body>
 </html>

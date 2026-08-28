@@ -184,7 +184,13 @@ async function cargarPartidos() {
     }
 
     const partidos = datos.response || [];
+const partidosFiltrados = partidos.filter(partido => {
+  if (partido.league.name === "Premier League") {
+    return partido.league.country === "England";
+  }
 
+  return true;
+});
     // Eliminamos los ejemplos
     document.querySelectorAll(".league").forEach(el => el.remove());
     document.querySelector(".empty")?.remove();
@@ -199,7 +205,7 @@ async function cargarPartidos() {
 
     const ligas = {};
 
-partidos.forEach(partido => {
+partidosFiltrados.forEach(partido => {
   const ligaId = partido.league.id;
   const ligaNombre = partido.league.name;
   const clave = `${ligaId}-${ligaNombre}`;

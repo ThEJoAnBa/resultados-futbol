@@ -241,7 +241,7 @@ let fechaSeleccionada = new Date().toISOString().split("T")[0];
   const contenedor = document.querySelector(".container");
 
   try {
-    const respuesta = await fetch(`/api/football?date=${fechaSeleccionada}`);
+    const respuesta = await fetch("/api/football");
     const datos = await respuesta.json();
 
     if (!respuesta.ok) {

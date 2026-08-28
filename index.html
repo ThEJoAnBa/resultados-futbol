@@ -199,18 +199,22 @@ async function cargarPartidos() {
 
     const ligas = {};
 
-    partidos.forEach(partido => {
-      const liga = partido.league.name;
+partidos.forEach(partido => {
+  const ligaId = partido.league.id;
+  const ligaNombre = partido.league.name;
+  const clave = `${ligaId}-${ligaNombre}`;
 
-      if (!ligas[liga]) {
-        ligas[liga] = {
-          nombre: liga,
-          partidos: []
-        };
-      }
+  if (!ligas[clave]) {
+    ligas[clave] = {
+      id: ligaId,
+      nombre: ligaNombre,
+      pais: partido.league.country,
+      partidos: []
+    };
+  }
 
-      ligas[liga].partidos.push(partido);
-    });
+  ligas[clave].partidos.push(partido);
+});
 const prioridades = [
   "UEFA Champions League",
   "Premier League",

@@ -6,6 +6,13 @@
   <title>BATIISTV Resultados</title>
 
   <style>
+    .team img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin: 0 8px;
+  }
     * {
       box-sizing: border-box;
       margin: 0;
@@ -232,20 +239,22 @@ async function cargarPartidos() {
         const partidoHTML = document.createElement("div");
         partidoHTML.className = "match";
 
-        partidoHTML.innerHTML = `
-          <div class="team home">
-            ${partido.teams.home.name}
-          </div>
+    partidoHTML.innerHTML = `
+  <div class="team home">
+    <img src="${partido.teams.home.logo}" alt="${partido.teams.home.name}">
+    <span>${partido.teams.home.name}</span>
+  </div>
 
-          <div class="score">
-            ${golesLocal} - ${golesVisitante}
-            <span class="status">${textoEstado}</span>
-          </div>
+  <div class="score">
+    ${golesLocal} - ${golesVisitante}
+    <span class="status">${textoEstado}</span>
+  </div>
 
-          <div class="team away">
-            ${partido.teams.away.name}
-          </div>
-        `;
+  <div class="team away">
+    <img src="${partido.teams.away.logo}" alt="${partido.teams.away.name}">
+    <span>${partido.teams.away.name}</span>
+  </div>
+`;
 
         bloque.appendChild(partidoHTML);
       });

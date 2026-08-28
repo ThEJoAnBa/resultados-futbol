@@ -323,7 +323,7 @@ if (estado === "FT") {
 
 let marcador;
 
-if (estado === "NS") {
+if (estado === "NS" || (partido.goals.home === null && partido.goals.away === null)) {
   const fechaPartido = new Date(partido.fixture.date);
 
   marcador = fechaPartido.toLocaleTimeString("es-ES", {
@@ -331,10 +331,10 @@ if (estado === "NS") {
     minute: "2-digit"
   });
 } else {
-const golesLocal = partido.goals.home ?? 0;
-const golesVisitante = partido.goals.away ?? 0;
+  const golesLocal = partido.goals.home ?? 0;
+  const golesVisitante = partido.goals.away ?? 0;
 
-marcador = `${golesLocal} - ${golesVisitante}`;
+  marcador = `${golesLocal} - ${golesVisitante}`;
 }
 const partidoHTML = document.createElement("div");
 partidoHTML.className = "match";

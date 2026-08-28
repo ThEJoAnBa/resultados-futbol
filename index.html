@@ -218,7 +218,10 @@
     BATIISTV · Resultados de fútbol
   </footer>
 <script>
-async function cargarPartidos() {
+
+let fechaSeleccionada = new Date().toISOString().split("T")[0];  
+  
+  async function cargarPartidos() {
   const contenedor = document.querySelector(".container");
 
   try {

@@ -226,7 +226,15 @@
 <script>
 
 let fechaSeleccionada = new Date().toISOString().split("T")[0];  
-  
+  function cambiarFecha(dias) {
+  const fecha = new Date();
+
+  fecha.setDate(fecha.getDate() + dias);
+
+  fechaSeleccionada = fecha.toISOString().split("T")[0];
+
+  cargarPartidos();
+}
   async function cargarPartidos() {
   const contenedor = document.querySelector(".container");
 

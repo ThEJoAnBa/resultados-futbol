@@ -189,6 +189,10 @@ const partidosFiltrados = partidos.filter(partido => {
     return partido.league.country === "England";
   }
 
+  if (partido.league.name === "Bundesliga") {
+    return partido.league.country === "Germany";
+  }
+
   return true;
 });
     // Eliminamos los ejemplos

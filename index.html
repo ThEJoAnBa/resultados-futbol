@@ -313,15 +313,13 @@ const ligasOrdenadas = Object.values(ligas).sort((a, b) => {
       liga.partidos.forEach(partido => {
         const estado = partido.fixture.status.short;
 
-        let textoEstado = "Próximo";
+let textoEstado = "Próximo";
 
-        if (estado === "FT") {
-          textoEstado = "Finalizado";
-        } else if (["1H", "2H", "ET", "P"].includes(estado)) {
-          textoEstado = "EN DIRECTO";
-        }
-
-       const estado = partido.fixture.status.short;
+if (estado === "FT") {
+  textoEstado = "Finalizado";
+} else if (["1H", "2H", "ET", "P"].includes(estado)) {
+  textoEstado = "EN DIRECTO";
+}
 
 let marcador;
 
@@ -339,9 +337,8 @@ if (estado === "NS") {
   marcador = `${marcador}`;
 }
 
-        const partidoHTML = document.createElement("div");
-        partidoHTML.className = "match";
-
+const partidoHTML = document.createElement("div");
+partidoHTML.className = "match";
     partidoHTML.innerHTML = `
   <div class="team home">
     <img src="${partido.teams.home.logo}" alt="${partido.teams.home.name}">
@@ -349,9 +346,9 @@ if (estado === "NS") {
   </div>
 
   <div class="score">
-    ${golesLocal} - ${golesVisitante}
-    <span class="status">${textoEstado}</span>
-  </div>
+  ${marcador}
+  <span class="status">${textoEstado}</span>
+</div>
 
   <div class="team away">
     <img src="${partido.teams.away.logo}" alt="${partido.teams.away.name}">

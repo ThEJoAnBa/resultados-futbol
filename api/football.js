@@ -8,7 +8,14 @@ export default async function handler(req, res) {
       });
     }
 
-    const fecha = req.query.date || new Date().toISOString().split("T")[0];
+    const hoy = new Date();
+
+const fechaLocal =
+  hoy.getFullYear() + "-" +
+  String(hoy.getMonth() + 1).padStart(2, "0") + "-" +
+  String(hoy.getDate()).padStart(2, "0");
+
+const fecha = req.query.date || fechaLocal;
 
     const response = await fetch(
       "https://v3.football.api-sports.io/fixtures?date=" + fecha,

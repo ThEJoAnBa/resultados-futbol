@@ -211,7 +211,35 @@ async function cargarPartidos() {
 
       ligas[liga].partidos.push(partido);
     });
+const prioridades = [
+  "UEFA Champions League",
+  "Premier League",
+  "LaLiga",
+  "Serie A",
+  "Bundesliga",
+  "Ligue 1",
+  "UEFA Europa League",
+  "UEFA Europa Conference League",
+  "Brasileirão Série A",
+  "Liga Profesional Argentina",
+  "Primera División - Chile",
+  "Liga 1 - Peru",
+  "Primera A",
+  "Primera División - Uruguay",
+  "Primera División - Paraguay",
+  "LigaPro Serie A",
+  "Primera División - Bolivia"
+];
 
+const ligasOrdenadas = Object.values(ligas).sort((a, b) => {
+  const prioridadA = prioridades.indexOf(a.nombre);
+  const prioridadB = prioridades.indexOf(b.nombre);
+
+  const valorA = prioridadA === -1 ? 999 : prioridadA;
+  const valorB = prioridadB === -1 ? 999 : prioridadB;
+
+  return valorA - valorB;
+});
     ligasOrdenadas.forEach(liga => {
       const bloque = document.createElement("div");
       bloque.className = "league";

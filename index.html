@@ -235,6 +235,9 @@ let fechaSeleccionada = new Date().toISOString().split("T")[0];
 
   cargarPartidos();
 }
+ function abrirCompeticion(idLiga) {
+  console.log("Competición seleccionada:", idLiga);
+} 
   async function cargarPartidos() {
   const contenedor = document.querySelector(".container");
 

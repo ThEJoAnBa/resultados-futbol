@@ -331,11 +331,10 @@ if (estado === "NS") {
     minute: "2-digit"
   });
 } else {
-  const golesLocal = partido.goals.home ?? 0;
-  const golesVisitante = partido.goals.away ?? 0;
+const golesLocal = partido.goals.home ?? 0;
+const golesVisitante = partido.goals.away ?? 0;
 
-  marcador = `${marcador}`;
-}
+marcador = `${golesLocal} - ${golesVisitante}`;
 
 const partidoHTML = document.createElement("div");
 partidoHTML.className = "match";

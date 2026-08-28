@@ -322,11 +322,10 @@ const ligasOrdenadas = Object.values(ligas).sort((a, b) => {
       bloque.className = "league";
 
       bloque.innerHTML = `
-        <div class="league-title">
-          ${liga.nombre}
-        </div>
-      `;
-
+  <div class="league-title" onclick="abrirCompeticion(${liga.partidos[0].league.id})">
+    ${liga.nombre}
+  </div>
+`;
       liga.partidos.forEach(partido => {
         const estado = partido.fixture.status.short;
 

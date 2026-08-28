@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BATIISTV Resultados</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f4f7;
+      color: #111;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 28px;
+    }
+
+    header p {
+      margin-top: 6px;
+      color: #bbb;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    .date {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .league {
+      background: white;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .league-title {
+      background: #168c45;
+      color: white;
+      padding: 12px 16px;
+      font-weight: bold;
+    }
+
+    .match {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .match:last-child {
+      border-bottom: none;
+    }
+
+    .team {
+      width: 35%;
+      font-weight: bold;
+    }
+
+    .home {
+      text-align: right;
+    }
+
+    .away {
+      text-align: left;
+    }
+
+    .score {
+      width: 20%;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .status {
+      display: block;
+      font-size: 12px;
+      color: #777;
+      margin-top: 4px;
+    }
+
+    .empty {
+      text-align: center;
+      background: white;
+      padding: 40px 20px;
+      border-radius: 12px;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #777;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>BATIISTV</h1>
+    <p>Resultados de fútbol</p>
+  </header>
+
+  <main class="container">
+
+    <div class="date">
+      Partidos de hoy
+    </div>
+
+    <div class="league">
+
+      <div class="league-title">
+        Ejemplo de competición
+      </div>
+
+      <div class="match">
+        <div class="team home">
+          Equipo Local
+        </div>
+
+        <div class="score">
+          2 - 1
+          <span class="status">Finalizado</span>
+        </div>
+
+        <div class="team away">
+          Equipo Visitante
+        </div>
+      </div>
+
+    </div>
+
+    <div class="empty">
+      Los resultados reales aparecerán aquí cuando conectemos la API de fútbol.
+    </div>
+
+  </main>
+
+  <footer>
+    BATIISTV · Resultados de fútbol
+  </footer>
+
+</body>
+</html>
